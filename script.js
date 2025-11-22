@@ -60,7 +60,7 @@ const albumData = {
     
     "Sam": {
         folder: "Sam",
-        count: 40,
+        count: 41,
         Cover_image: '31'
     },
     "soundra": {
