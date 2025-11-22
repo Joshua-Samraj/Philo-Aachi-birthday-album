@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandma's Birthday Album</title>
+    <meta property="og:title" content="Happy Birthday Grandma! 🎂">
+    <meta property="og:description" content="Celebrating 90 Years of Love & Memories. Check out our family photos!">
+    <meta property="og:image" content="image/Random/(88).webp">
+    <meta property="og:type" content="website">
+    <link id="favicon" rel="shortcut icon" href="image/Random/(88).webp" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Lightbox.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+
+<body>
+    <div id="home-section">
+        <header class="hero">
+
+            <div class="hero-slideshow">
+                <img src="image/Random/(1).webp" class="slide active">
+                <img src="image/Random/(33).webp" class="slide">
+                <img src="image/Random/(46).webp" class="slide">
+                <img src="image/Random/(110).webp" class="slide">
+                <!-- <img src="image/Random/(41).webp" class="slide"> -->
+            </div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <div class="hero-img-container">
+                    <img src="image/Random/(88).webp" alt="Grandma" class="grandma-photo">
+                </div>
+                <h1>Happy Birthday Philo Aachi! 🎂</h1>
+                <p>90 Years of Love & Memories</p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="slide-progress"></div>
+            </div>
+        </header>
+
+        <div class="container">
+            <h2>Select a Family Album</h2>
+
+            <div class="card-grid" id="card-grid">
+            </div>
+
+        </div>
+    </div>
+
+    <div id="gallery-section" class="hidden">
+        <div class="gallery-header">
+            <a href="#" class="back-btn">⬅ Back to Album</a>
+            <h2 id="gallery-title">Family Photos</h2>
+        </div>
+        <div id="photo-container" class="photo-grid"></div>
+    </div>
+    <div id="image-viewer" class="viewer hidden">
+        <span class="close-btn" onclick="closeViewer()">&times;</span>
+        <span class="arrow-btn prev-btn" onclick="changeImage(-1)">&#10094;</span>
+        <span class="arrow-btn next-btn" onclick="changeImage(1)">&#10095;</span>
+        <div class="viewer-content">
+            <img id="full-image" src="" alt="Full Size">
+            <a id="download-btn" href="" target="_blank" class="download-btn">
+                📥 Download
+            </a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // --- NEW FUNCTION: Auto-generate Home Cards ---
+        function generateHomeCards() {
+            const grid = document.getElementById('card-grid');
+
+            // Clear any existing content
+            grid.innerHTML = "";
+
+            // Loop through every family in your database
+            for (const key in albumData) {
+                const data = albumData[key];
+
+                // 1. Create the formatted title (e.g., "godson" -> "Godson")
+                const familyName = formatTitle(key);
+                let displayTitle = familyName;
+                if (key !== "Random") {
+                    displayTitle += " Family";
+                } else {
+                    displayTitle += " Pic"
+                }
+
+                // 2. Create the HTML Card string
+                const cardHTML = `
+            <a href="#${key}" class="card-link">
+                <div class="card">
+                    <img src="image/${data.folder}/(${data.Cover_image}).webp" 
+                         alt="${displayTitle}" 
+                         class="card-thumbnail" 
+                         loading="lazy">
+                    <h3>${displayTitle}</h3>
+                    <p>${data.count} Photos</p>
+                </div>
+            </a>
+        `;
+                // 3. Add to the grid
+                grid.innerHTML += cardHTML;
+            }
+        }
+
+        // --- NEW: ALWAYS SCROLL TO TOP LOGIC ---
+        // This listens for any change in the URL (#) and resets scroll to top
+        window.addEventListener('hashchange', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant' // Use 'smooth' if you want a scrolling animation
+            });
+        });
+
+        // Update your Event Listener to run this when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            handleRoute();       // Handles the #hash navigation
+            generateHomeCards(); // Generates the cards on the home page
+
+            // Ensure we start at the top on refresh too
+            window.scrollTo(0, 0);
+        });
+    </script>
+    <script>
+
+        function startSlideshow() {
+            const slides = document.querySelectorAll('.slide');
+            const progressBar = document.getElementById('slide-progress');
+            let currentIndex = 0;
+            const slideInterval = 4000;
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+                runProgressBar();
+            }
+
+            setInterval(() => {
+                const activeSlide = slides[currentIndex];
+
+                let nextIndex = (currentIndex + 1) % slides.length;
+                const nextSlide = slides[nextIndex];
+
+                activeSlide.classList.remove('active');
+                activeSlide.classList.add('exit');
+                nextSlide.classList.add('active');
+
+                setTimeout(() => {
+                    activeSlide.classList.remove('exit');
+                }, 1000);
+
+                currentIndex = nextIndex;
+
+                runProgressBar();
+
+            }, slideInterval);
+
+            function runProgressBar() {
+                progressBar.classList.remove('filling');
+
+                void progressBar.offsetWidth;
+
+                progressBar.classList.add('filling');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', startSlideshow);
+    </script>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="section-info">
+                <h1>DigiNest Solution</h1>
+                <p class="location-text">Tirunelveli</p>
+                <p class="contact-line"> <a href="tel:+919500561937">+91 95005 61937</a> </p>
+            </div>
+            <div class="company-row">
+
+
+
+
+            </div>
+
+            <!-- <div class="section-info contact-group">
+            <h4 class="contact-heading">Contact Us</h4>
+            <p class="contact-line">
+                <a href="tel:+919500561937">+91 95005 61937</a>
+            </p>
+        </div>   -->
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 DigiNest Solution & Natural Studio. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>

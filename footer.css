@@ -1,0 +1,123 @@
+/* ===================================================================
+   0. FOOTER-SPECIFIC VARIABLES
+   =================================================================== */
+
+:root {
+    /* Variables necessary for the footer's dark theme and fonts */
+    --bg-dark: #000;
+    --text-light: #d1d5db; /* gray-300 */
+    --border-color: #374151; /* gray-700 */
+    --text-darker: #9ca3af; /* gray-400 */
+    --accent-color: #facc15; /* yellow-400 - used for hover color */
+    --bg-start: #1f2937; /* gray-900 */
+    --bg-end: #1f2937; /* gray-900 */
+    /* Removed --heading-font as it's no longer used for the '&' symbol */
+}
+
+/* ===================================================================
+   1. FOOTER STRUCTURE AND BASE STYLING
+   =================================================================== */
+
+/* Footer Styling */
+.footer {
+    /* width: 100%; */
+    /* Gradient for dark background */
+    background: linear-gradient(to right, var(--bg-start), var(--bg-dark), var(--bg-end));
+    color: var(--text-light);
+    /* Reduced vertical padding for compactness */
+    padding: 12px 24px; 
+    margin-top: auto;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+}
+
+.footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    /* Use flexbox for simple, centered content */
+    display: flex;
+    justify-content: center; /* Center the single content block */
+    grid-template-columns: 1fr; /* Retained from old grid, but flex is primary now */
+    gap: 16px;
+}
+
+/* Company/Contact Info Section (Now the main block) */
+.section-info {
+    /* Ensure text is always centered */
+    text-align: center;
+}
+
+/* Headings - Reduced margin-bottom for tighter spacing */
+.section-info h1, .section-info h4 {
+    color: white;
+    margin-bottom: 2px; 
+}
+
+.section-info h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.section-info h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Contact Line */
+.contact-line {
+    display: flex;
+    align-items: center;
+    /* Ensure contact line items are always centered */
+    justify-content: center;
+    font-size: 0.875rem;
+}
+
+.contact-line a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 150ms ease-in-out;
+}
+
+.contact-line a:hover {
+    color: var(--accent-color);
+}
+
+/* Location Text - Reduced margin-top for tighter spacing */
+.location-text {
+    margin-top: 2px;
+    font-size: 0.875rem;
+}
+
+/* Bottom Copyright */
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1px;
+    padding-top: 8px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-darker);
+}
+
+/* Removed unused partner/contact group styling */
+/* .contact-group { ... } */
+/* .partner-heading, .contact-heading { ... } */
+
+
+/* ===================================================================
+   2. SINGLE-COLUMN LAYOUT CLEANUP (No longer needed to override .company-row)
+   =================================================================== */
+
+/* Removed the entire .company-row block and its ::before/::after rules
+   as they were only used for the old two-column mobile layout. */
+
+/* ===================================================================
+   3. RESPONSIVE OVERRIDES
+   =================================================================== */
+
+/* Desktop/Tablet (768px and up) - No changes needed as the content is single-column centered */
+@media (min-width: 768px) {
+    /* Ensures the main content area remains centered and single column */
+    .footer-content {
+        grid-template-columns: 1fr;
+        justify-content: center; 
+    }
+}

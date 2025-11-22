@@ -1,0 +1,375 @@
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
+.card-link .card {
+    height: 100%;
+}
+
+
+html,
+body {
+    /* Ensures the body takes up the full viewport height */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* 1. Turns the body into a column-based layout */
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrap {
+    /* 2. Tells the main content to take up all available vertical space */
+    flex-grow: 1;
+    /* Required to prevent the footer from pushing itself off-screen
+       if content is wider than the viewport */
+    min-width: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff0f3;
+    margin: 0;
+    text-align: center;
+    color: #4a4a4a;
+}
+
+.hero {
+    position: relative;
+    height: 400px;
+    /* Give it a fixed height */
+    overflow: hidden;
+    /* Cut off any image overflow */
+    color: white;
+    /* border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px; */
+    /* We don't use background-image here anymore */
+}
+
+/* --- PROGRESS BAR STYLES --- */
+.progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    /* Thickness of the bar */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Faint white background */
+    z-index: 10;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #ff9a9e;
+    /* Pink color matching your theme */
+    /* We don't set transition here, we use animation in the class below */
+}
+
+/* This class triggers the animation */
+.progress-bar.filling {
+    animation: fillBar 4s linear forwards;
+    /* 4s matches your Javascript timer */
+}
+
+/* Define the animation */
+@keyframes fillBar {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* The Container for the background images */
+/* --- SLIDESHOW CONTAINER --- */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    /* Ensures images don't show up outside the header */
+    background-color: black;
+    filter: brightness(0.5) ;
+}
+
+/* --- SLIDE ANIMATION STYLES --- */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* 1. Start Position: Off-screen to the RIGHT */
+    transform: translateX(100%);
+
+    /* The sliding speed (1 second) */
+    transition: transform 1s ease-in-out;
+}
+
+/* 2. Active Position: In the CENTER */
+.slide.active {
+    transform: translateX(0);
+    z-index: 1;
+}
+
+/* 3. Exit Position: Off-screen to the LEFT */
+.slide.exit {
+    transform: translateX(-100%);
+    z-index: 0;
+}
+
+/* Dark Overlay so text pops */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* 50% Dark Black */
+    z-index: 1;
+    /* Sits on top of images */
+}
+
+/* Wrapper for the text and grandma photo */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* Sits on top of overlay */
+    padding-top: 40px;
+    text-align: center;
+}
+
+/* Adjust your existing container style if needed */
+.hero-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 5px solid white;
+    overflow: hidden;
+}
+
+.hero-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 5px solid white;
+    overflow: hidden;
+}
+
+.grandma-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.hidden {
+    display: none;
+}
+
+.gallery-header {
+    padding: 20px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 20px;
+    background: #ff9a9e;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+.card {
+    background: white;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+
+.card-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    /* border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px; */
+}
+
+
+.card h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 0 15px;
+}
+
+.card p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    color: #777;
+    display: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    border-color: #ff9a9e;
+}
+
+
+.card_1-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+
+
+.card_1 {
+    background: white;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+
+.card_1-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    /* border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px; */
+}
+
+
+.card_1 h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 0 15px;
+}
+
+.card_1 p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    color: #777;
+    display: none;
+}
+
+.card_1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    border-color: #ff9a9e;
+}
+
+
+
+@media (max-width: 768px) {
+    .photo-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .gallery-img {
+
+        height: 200px;
+    }
+
+    .gallery-header {
+        padding: 20px;
+        background: white;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        position: relative;
+    }
+}
