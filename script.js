@@ -42,8 +42,8 @@ const albumData = {
         count: 29,
         Cover_image: '28'
     },
-    "Kiren": {
-        folder: "Kiren",
+    "Kiran": {
+        folder: "Kiran",
         count: 21,
         Cover_image: '20'
     },
