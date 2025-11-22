@@ -25,7 +25,7 @@ const albumData = {
     "feno": {
         folder: "feno",
         count: 47,
-        Cover_image: '44'
+        Cover_image: '42'
     },
     "Francy": {
         folder: "Francy",
